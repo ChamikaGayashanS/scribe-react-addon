@@ -2,56 +2,42 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 /* global Word, require */
 // eslint-disable-next-line no-redeclare
-/* global console, require */
+// /* global console, require */
 import { DefaultButton } from "@fluentui/react";
-import React, { useState } from "react";
+import React from "react";
+import { addDocument } from "../../helpers/FirebaseFunctions";
+import { IFile } from "../../helpers/Interfaces";
 
 
 
 function RetrieveData() {
-    const [headerData, setheaderData] = useState("");
 
+    const saveDocument = async (file: IFile) => {
+        await addDocument("0001", file);
+    }
 
-    const getHeader = () => {
-        setheaderData("Loading Header")
-        return Word.run(async (context) => {
+    async function getWordDocument() {
+        await Word.run(async (context) => {
             const header = context.document.sections.getFirst().getHeader("Primary").getOoxml();
-            await context.sync();
-            console.log(header, "header");
-            // eslint-disable-next-line office-addins/load-object-before-read
-            setheaderData(header.value)
-        });
-
-    }
-    const getBody = () => {
-        setheaderData("Loading Body")
-        return Word.run(async (context) => {
             const body = context.document.body.getOoxml();
+            const footer = context.document.sections.getFirst().getFooter("Primary").getOoxml();
             await context.sync();
-            console.log(body, "body");
-            // eslint-disable-next-line office-addins/load-object-before-read
-            setheaderData(body.value)
+            saveDocument({
+                fileName: "test file",
+                headerXml: header.value.toString(),
+                bodyXml: body.value.toString(),
+                footerXml: footer.value.toString()
+            });
         });
-
     }
+
     return <div className="editor-content">
-        <h1>Retrieve Data</h1>
+        <h1>Save Data</h1>
 
-        <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={getHeader}>
-            Get Header
+        <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={getWordDocument}>
+            Save Document
         </DefaultButton>
         <br />
-        <br />
-        <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={getBody}>
-            Get Body
-        </DefaultButton>
-        <br />
-        <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={() => { setheaderData("") }}>
-            Clear
-        </DefaultButton>
-        <br />
-
-        <div className="editor" contentEditable>{headerData}</div>
     </div>;
 }
 

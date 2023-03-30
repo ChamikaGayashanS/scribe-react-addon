@@ -4,6 +4,7 @@ import Progress from "./Progress";
 import AddData from "./AddData/AddData";
 import RetrieveData from "./RetrieveData/RetrieveData";
 import AddXml from "./AddXML/AddXml";
+import AddImage from "./AddImage/AddImage";
 
 /* global Word, require */
 
@@ -74,7 +75,8 @@ export default class App extends React.Component<AppProps, AppState> {
 
     return (
       <div className="ms-welcome">
-        <AddData />
+        {/* <AddData /> */}
+        <AddImage />
         <AddXml />
         <RetrieveData />
       </div>

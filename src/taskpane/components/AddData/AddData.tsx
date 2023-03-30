@@ -22,7 +22,7 @@ const addHtmlTag = () => {
 
         const body = context.document.body;
         body.insertHtml(
-            "<img src='https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png'>", Word.InsertLocation.start);
+            "<img src='https://firebasestorage.googleapis.com/v0/b/scribe-it-admin-web.appspot.com/o/media%2FScreenshot%20(44).png?alt=media&token=fb45a2da-05eb-41d4-a826-9ecad7cdff18'>", Word.InsertLocation.start);
         await context.sync();
         console.log('HTML added to the beginning of the document body.');
     });
@@ -33,7 +33,7 @@ const addHeaderTag = () => {
 
         const header = context.document.sections.getFirst().getHeader("Primary");
         header.insertHtml(
-            "<img src='https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png'>", Word.InsertLocation.start);
+            "<img src='https://firebasestorage.googleapis.com/v0/b/scribe-it-admin-web.appspot.com/o/media%2FScreenshot%20(44).png?alt=media&token=fb45a2da-05eb-41d4-a826-9ecad7cdff18'>", Word.InsertLocation.start);
         await context.sync();
         console.log('HTML added to the beginning of the document body.');
     });
