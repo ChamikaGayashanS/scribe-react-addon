@@ -52,10 +52,12 @@ function AddImage() {
 
     // }
 
-    var doc = Office.context.document;
+    let doc = Office.context.document;
     doc.addHandlerAsync(Office.EventType.DocumentSelectionChanged, function (eventArgs: any) {
         console.log(eventArgs);
     });
+
+    // doc.getFileAsync()
 
     return <div>
         <input id="file-input" type={"file"} hidden onChange={async (val) => {

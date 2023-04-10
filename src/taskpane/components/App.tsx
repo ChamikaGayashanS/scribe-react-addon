@@ -1,10 +1,11 @@
 import * as React from "react";
 import { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
-import AddData from "./AddData/AddData";
+// import AddData from "./AddData/AddData";
 import RetrieveData from "./RetrieveData/RetrieveData";
 import AddXml from "./AddXML/AddXml";
 import AddImage from "./AddImage/AddImage";
+import ParaInput from "./ParaInput/ParaInput";
 
 /* global Word, require */
 
@@ -76,6 +77,7 @@ export default class App extends React.Component<AppProps, AppState> {
     return (
       <div className="ms-welcome">
         {/* <AddData /> */}
+        <ParaInput />
         <AddImage />
         <AddXml />
         <RetrieveData />
